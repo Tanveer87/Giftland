@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content  %}
+{% for  detail in cart.product.all %}
+<br>
+<br>
+<div class="col d-flex justify-content-center">
+    <div class="card bg-light mb-2`" >
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="{{ detail.p_image.url }}" class="card-img" alt="...">
+        </div>
+
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{ detail.p_name }}</h5>
+            <p class="card-text">
+                Product: {{ detail.p_name }} <br>
+                ID: {{ detail.p_id }} <br>
+                Price: {{ detail.p_price }} <br>
+                Category: {{ detail.category }} <br>
+                Description: {{ detail.description }} <br> 
+            </p>
+            <!-- <h4>Option 1: <a href="{% url 'order-product' detail.id %}" >Payment on delivery</a><br></h4> -->
+            <div class="alert alert-warning" role="alert">
+              Option 1:
+            </div>
+            <a href="{% url 'order-product' detail.id %}"> 
+                <button type="submit" class="btn btn-outline-warning">Cash on delivery</button><br>
+            </a>
+            <br>
+            <div class="alert alert-warning" role="alert">
+              Option 2:
+            </div>
+
+            <form action="{% url 'payment' detail.id %}" method="POST">
+              {% csrf_token %}
+              <input name="transaction_id" type="text"  style="border-color: yellow;" placeholder="transaction ID" required>
+              <button type="submit" class="btn btn-outline-warning">Order with Bkash or Rocket</button>
+            </form>
+
+            <!-- <form action="{% url 'payment' detail.id %}" method="POST">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control border-warning" placeholder="transaction ID" aria-label="transaction ID" aria-describedby="basic-addon2" required>
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-warning" type="submit">Order with Bkash or Rocket</button>
+                  </div>
+                </div>
+            </form> -->
+            
+            <a href="{% url 'delete-from-cart' detail.id %}"> 
+                <button type="submit" class="btn btn-outline-warning">Remove Item</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>    
+{% endfor %}
+</div>
+<br>
+<div class="col d-flex justify-content-center">
+            {% if detail.p_name  is null %}
+            <div class="alert alert-primary text-md-center text-danger" role="alert">
+              You don't have anything on cart yet!<br>
+              Buy something!<br>
+              <p style="font-size:100px">&#128540;</p>
+            </div>
+            {% else %}
+    <button type="submit" class="btn btn-outline-warning">Total Amount : {{ total }}</button>
+    {% endif %}
+
+</div>
+<hr>
+{% endblock content %}

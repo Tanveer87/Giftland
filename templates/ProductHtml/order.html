@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+{% block content  %}
+<!--Order Pendening-->
+{% if order_status == True %}
+    {% for order in orders %}
+        <br>
+        <div class="col d-flex justify-content-center">
+            <div class="card bg-light mb-2`" >
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <img src="{{ order.product.p_image.url }}" class="card-img" alt="...">
+                </div>
+        
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ detail.p_name }}</h5>
+                    <p class="card-text">
+                        Product : {{ order.product.p_name }} <br>
+                        ID : {{ order.product.p_id }} <br>
+                        Price : {{ order.product.p_price }} <br>
+                        Category : {{ order.product.category }} <br>
+                        Description : {{ order.product.description }} <br>
+                        <br>
+                        {% if order.status == 'Pending' %}
+                        <button type="button" class="btn btn-lg btn-outline-warning disabled">{{ order.status }}</button>
+                        {% elif order.status == 'Approved' %}
+                        <button type="button" class="btn btn-lg btn-outline-info disabled">{{ order.status }}</button>
+                        {% elif order.status == 'Delivering' %}
+                        <button type="button" class="btn btn-lg btn-outline-primary disabled">{{ order.status }}</button>
+                        {% elif order.status == 'Completed' %}
+                        <button type="button" class="btn btn-lg btn-outline-success disabled">{{ order.status }}</button>
+                        <a href="{% url 'review' order.product.id %}" ><button type="submit" class="btn btn-lg btn-outline-success">Review</button></a>
+                        {% endif %}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div> 
+    {% endfor %}
+    </div>
+<br>
+<div class="col d-flex justify-content-center">
+    <button type="submit" class="btn btn-outline-warning disabled">Total Amount : {{ total }}</button>
+    {% else %}
+    <button type="submit" class="btn btn-outline-warning disabled">Total Amount : 0.00</button>
+    {% endif %}
+</div>
+<hr>
+{% endblock content %}

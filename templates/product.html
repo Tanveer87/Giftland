@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block other %}
+
+<br>
+<br>
+<div class="col-lg-12">
+            <div class="card">
+<div class="row">
+	<div class="col-md">
+		<h4 style="text-align: center; color: yellowgreen;">Product Info</h4>
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Product Name</th>
+					<th>Product Price</th>
+                    <th>Total Stock</th>
+					{% for i in product_info %}
+					   <tr>
+						   <td>{{ i.product_name }}</td>
+                           <td>{{ i.product_price }}</td>
+						   <td>{{ i.product_totalstock }}</td>
+					   </tr>
+					{% endfor %}                    
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+
+<br>
+<div class="row">
+	<div class="col-md">
+		<h5 style="text-align: center; color:yellowgreen;">Category-Info</h5>
+		<hr>
+		<div class="card card-body">
+			<a class="btn btn-primary btn-sm btn-block" href="">Category Type</a>
+			<table class="table table-sm">
+				<tr>
+					<th>Type</th>
+					{% for i in category_info %}
+					   <tr>
+						   <td>{{ i.category_type }}</td>
+					   </tr>
+					{% endfor %}                    
+				</tr>
+				
+			</table>
+		</div>
+	</div>
+
+	<div class="col-md-4">
+		<h5 style="text-align: center; color:yellowgreen;">Review-Info</h5>
+		<hr>
+		<div class="card card-body">
+			<a class="btn btn-primary btn-sm btn-block" href="">Product Review</a>
+			<table class="table table-sm">
+				<tr>
+					<th>Rating</th>
+                    <th>Comment</th>
+					{% for i in review_info %}
+					   <tr>
+						   <td>{{ i.review_rating }}</td>
+						   <td>{{ i.review_comment}}</td>
+					   </tr>
+					{% endfor %}                    
+				</tr>
+				
+			</table>
+		</div>
+	</div>	
+
+	<div class="col-md-4">
+		<h5 style="text-align: center; color:yellowgreen;">Cart-Info</h5>
+		<hr>
+		<div class="card card-body">
+			<a class="btn btn-primary btn-sm btn-block" href="">Cart Details</a>
+			<table class="table table-sm">
+				<tr>
+					<th>Status</th>
+					<th>Discount</th>
+					<th>Time</th>
+					{% for i in cart_info %}
+					   <tr>
+						   <td>{{ i.cart_status }}</td>
+						   <td>{{ i.cart_discount}}</td>
+						   <td>{{ i.cart_time}}</td>
+					   </tr>
+					{% endfor %}                    
+				</tr>
+				
+			</table>
+		</div>
+	</div>		
+
+</div>
+
+{% endblock %}

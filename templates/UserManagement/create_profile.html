@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<br>
+<div class="container">
+    <div class="row mx-auto" >
+        <div class="col mx-auto" >
+            <div class="col d-flex justify-content-center"></div>
+                 <form  method="POST" enctype="multipart/form-data">
+                 {% csrf_token %}
+                 {% if val == '0' %}
+                 <div class="alert alert-primary text-md-center text-danger" role="alert">
+                    Please fill up everything!
+                 </div>
+                 {{ form|crispy }}<br>
+                <button class="btn btn-lg btn-warning" type="button" name="Create User" onclick="if (confirm('You can not change again. Are you sure?')) {
+                                  // Save it!
+                                  onclick=alert('Success');
+                                  type='submit'
+                                } else {
+                                  // Do nothing!
+                                  onclick=alert('Did not changed, Please reload this page again');
+                                }">Submit</button>
+                {% else %}
+                 <div class="alert alert-primary text-md-center text-danger" role="alert">
+                    You can set profile only once!
+                    </div>
+                     {% endif %}
+                <hr>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>            
+{% endblock %}
+
+

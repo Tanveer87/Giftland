@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<div class="row">
+	<div class="col-md">
+		<h4 style="text-align: center; color: yellowgreen;">Adds Cart</h4>
+		<div class="card card-body">
+			<table class="table table-sm">
+                <br>
+                <form method="POST">
+				  <b><i style="color:tomato;">{{ massage }}</i></b>
+				  <br>	 
+                  {% csrf_token %}  
+                  {{form.as_p}}
+                  <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+                </form>
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock content %}

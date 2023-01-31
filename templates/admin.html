@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<br>
+<div class="row">
+	<div class="col-md">
+        <h4 style="text-align: center; color:violet;">Admin Info</h4>
+		<div class="card card-body">
+			<table  class="table table-sm">
+				<tr>
+					<th>Admin Name</th>
+					<th>Admin Email</th>
+                    <th>Admin ID </th>
+					{% for i in admin_info %}
+					   <tr>
+						   <td>{{ i.admin_name }}</td>
+                           <td>{{ i.admin_email }}</td>
+						   <td>{{ i.admin_id}}</td>
+					   </tr>
+					{% endfor %}                    
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>         
+{% endblock content %}

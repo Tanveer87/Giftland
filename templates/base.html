@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Gift Land</title>
+  </head>
+  <body>
+
+<nav class="navbar navbar-expand-lg navbar-transparent bg-warning">
+	<a class="navbar-brand" href="/">Gift_Land</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	  <span class="navbar-toggler-icon"></span>
+	</button>
+  
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+	  <ul class="navbar-nav mr-auto">
+		<li class="nav-item active">
+		  <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/cart">Cart<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/orders">Order<span class="sr-only">(current)</span></a>
+		</li>
+	  </ul>
+	{% if user.is_authenticated %}
+	    <span class="badge badge-dark">{{user.username}}</span> 
+	<ul class="navbar-nav  my-2 my-lg-0">
+		<li class="nav-item active">
+		  <a class="nav-link" href="/account/logout">Logout<span class="sr-only">(current)</span></a>
+		</li>
+        <li class="nav-item">
+			<a class="nav-link" href="/profile">Profile</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="/profileview">View Profile</a>
+		  </li> 		
+        <li class="nav-item">
+			<a class="nav-link" href="/account/password_change">Change Password</a>
+		</li>		 		
+	</ul>			
+	{% else %}
+	    <span class="badge badge-dark">Stranger!</span>
+	<ul class="navbar-nav  my-2 my-lg-0">		 	
+		<li class="nav-item active">
+			<a class="nav-link" href="/signup">Signup<span class="sr-only">(current)</span></a>
+		</li>
+		<li class="nav-item active">
+			<a class="nav-link" href="/account/login">Login<span class="sr-only">(current)</span></a>
+		</li>
+	</ul>
+	{% endif %}		  
+	<form class="form-inline " method="POST" action="{% url 'index' %}">
+		{% csrf_token %}	
+		<input class="form-control mr-sm-2" type="search" placeholder="Search"  name = search aria-label="Search">
+		<button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+	  </form>
+	</div>
+  </nav>
+  <!--Navbar end-->
+  {% block content %}
+
+  {% endblock %}
+  
+<!-- Footer -->
+<footer class="card-footer bg-warning">
+    <!-- Copyright -->
+    <div class="col d-flex justify-content-center">© 2020 Copyright :
+    	<a href="void-brain70.github.io/port">&nbsp;Anik Chandra</a>
+      <a href="https://github.com/Ar-Anik/Gift_Land">,Abdul Rab Anik</a>
+    </div>
+    <!-- Copyright -->
+  
+  </footer>
+  <!-- Footer -->
+  
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>
+

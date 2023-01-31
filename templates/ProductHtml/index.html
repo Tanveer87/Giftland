@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'slider.html' %}
+<br>
+<div class="col d-flex justify-content-center">
+<ul class="list-group list-group-horizontal-sm">
+	<li class="list-group-item"><form method="POST" action="{% url 'index' %}">
+		{% csrf_token %}
+	
+	  <input  type="search" name="search" hidden value="birthday">
+	
+	  <button type="submit" class="btn btn-warning">Birthday package</button>
+	</form></li>
+	<li class="list-group-item"><form method="POST" action="{% url 'index' %}">
+		{% csrf_token %}
+	
+	  <input  type="search" name="search" hidden value="gift">
+	
+	  <button type="submit" class="btn btn-warning">Gift package</button>
+	</form></li>
+	<li class="list-group-item"><form method="POST" action="{% url 'index' %}">
+		{% csrf_token %}
+	
+	  <input  type="search" name="search" hidden value="eid">
+	  <button type="submit" class="btn btn-warning">Eid package</button>
+	</form></li>
+	<li class="list-group-item"><form method="POST" action="{% url 'index' %}">
+		{% csrf_token %}
+	
+	  <input  type="search" name="search" hidden value="valentine">
+	
+	  <button type="submit" class="btn btn-warning">Valentine package</button>
+	</form></li>
+	<li class="list-group-item"><form method="POST" action="{% url 'index' %}">
+		{% csrf_token %}
+	
+	  <input  type="search" name="search" hidden value="puja">
+	
+	  <button type="submit" class="btn btn-warning">Puja package</button>
+	</form></li>
+	<li class="list-group-item"><form method="POST" action="{% url 'index' %}">
+		{% csrf_token %}
+	
+	  <input  type="search" name="search" hidden value="christmas">
+	
+	  <button type="submit" class="btn btn-warning">Christmas package</button>
+	</form></li>
+	<li class="list-group-item"><form method="POST" action="{% url 'index' %}">
+		{% csrf_token %}
+	
+	  <input  type="search" name="search" hidden value="boishak">
+	
+	  <button type="submit" class="btn btn-warning">Boishakh package</button>
+	</form></li>
+	<li class="list-group-item"><form method="POST" action="{% url 'index' %}">
+		{% csrf_token %}
+	
+	  <input  type="search" name="search" hidden value="ring">
+	
+	  <button type="submit" class="btn btn-warning">Ring package</button>
+	</form></li>
+  </ul>
+</div>
+
+
+
+
+
+<br>
+<div id="products" class="col-lg-10 mx-auto">
+	<div class="row mx-auto" >
+		{% for i in products %}
+		<div class="card mx-auto mb-3" style="width: 18rem;">
+		<img src="{{i.p_image.url }}" class="card-img-top" alt="...">
+		<div class="card-body">
+		<p class="card-title">{{i.p_name}}</p>
+        <p class="card-text"><b>{{i.p_price}}</b></p>
+        </div>
+        <div class="card-footer" style="background: white">
+        <a href="{{ i.id }}">
+        <button type="button" class="btn btn-outline-warning container-fluid">Details</button>
+        </a>
+        
+        <!-- <button type="submit" class="btn btn-success border btn-sm">Add to Cart</button> -->
+        
+        </div>
+		</div>
+		{% endfor %}  
+	</div>			
+</div>
+{% endblock %}
+
